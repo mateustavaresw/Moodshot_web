@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Login (){
+function Login (onLoginSucess){
     const[email,setEmail] = useState('') // cria variavel especial email e setEmail para mudar valor do email 
     const [senha, setSenha] = useState('')
     const [erro,setErro] = useState('')
@@ -12,7 +12,7 @@ function Login (){
         }
         if(email === 'demo@moodshot.com' && senha === '123456'){
             setErro('')
-            console.log('Login OK!')
+            onLoginSucess()
 
         }else{
             setErro('E-mail ou senha incorretos.')
