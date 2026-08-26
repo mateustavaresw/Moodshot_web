@@ -15,7 +15,6 @@ function Slideshow() {
     const timer = setInterval(() => {
       setSlideAtual((atual) => (atual + 1) % slides.length)
     }, 3000)
-
     return () => clearInterval(timer)
   }, [])
 
@@ -29,22 +28,31 @@ function Slideshow() {
 
   const slide = slides[slideAtual]
 
-  return (
-    <section className="secao">
-      <h2>Modos em destaque</h2>
+return (
+  <section className="secao">
+    <span className="eyebrow">Live feed</span>
+    <h2>Modos em destaque</h2>
+
+    <div className="viewfinder">
+      <span className="corner corner-tl"></span>
+      <span className="corner corner-tr"></span>
+      <span className="corner corner-bl"></span>
+      <span className="corner corner-br"></span>
 
       <div className="slideshow" style={{ background: slide.cor }}>
         <p className="slide-modo">Modo {slide.modo}</p>
         <p className="slide-legenda">"{slide.legenda}"</p>
+        <p className="exif-line">ISO 400 · f/2.8 · MODO: {slide.modo.toUpperCase()}</p>
       </div>
+    </div>
 
-      <div className="slide-botoes">
-        <button onClick={anterior}>&#8592; Anterior</button>
-        <span>{slideAtual + 1} / {slides.length}</span>
-        <button onClick={proximo}>Próximo &#8594;</button>
-      </div>
-    </section>
-  )
+    <div className="slide-botoes">
+      <button onClick={anterior}>&#8592; Anterior</button>
+      <span>{slideAtual + 1} / {slides.length}</span>
+      <button onClick={proximo}>Próximo &#8594;</button>
+    </div>
+  </section>
+)
 }
 
 export default Slideshow

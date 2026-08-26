@@ -4,22 +4,22 @@ import Home from './components/Home'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userEmail, setUserEmail] = useState('')
+  const [userName, setUserName] = useState('')
 
-  function handleLoginSuccess(email) {
-    setUserEmail(email)
+  function handleLoginSuccess(email, nome) {
+    setUserName(nome)
     setIsLoggedIn(true)
   }
 
   function handleLogout() {
     setIsLoggedIn(false)
-    setUserEmail('')
+    setUserName('')
   }
 
   return (
     <>
       {isLoggedIn ? (
-        <Home userEmail={userEmail} onLogout={handleLogout} />
+        <Home userName={userName} onLogout={handleLogout} />
       ) : (
         <Login onLoginSuccess={handleLoginSuccess} />
       )}

@@ -1,18 +1,19 @@
 import { useState } from "react"
 
 function Login ({onLoginSuccess}){
+    const [nome, setNome] = useState('')
     const[email,setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [erro,setErro] = useState('')
     function handleSubmit(e){
         e.preventDefault()
-        if(!email ||!senha){
-            setErro('Preencha e-mail e senha.')
+        if(!nome || !email ||!senha){
+            setErro('Preencha nome, e-mail e senha.')
             return
         }
         if(email === 'demo@moodshot.com' && senha === '123456'){
             setErro('')
-            onLoginSuccess(email)
+            onLoginSuccess(email, nome)
         }else{
             setErro('E-mail ou senha incorretos.')
         }
@@ -22,6 +23,15 @@ function Login ({onLoginSuccess}){
             <h1>Moodshot</h1>
             <p>A câmera que sente o momento</p>
             <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Nome de usuário:</label>
+                    <input
+                    type="text"
+                    value={nome}
+                    onChange={(e)=> setNome(e.target.value)}
+                    placeholder="Como podemos te chamar?"
+                    />
+                </div>
                 <div className="form-group">
                     <label>E-mail:</label>
                     <input

@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 function Captura({ modoSelecionado }) {
-  const [historico, setHistorico] = useState([])
-  const [resultado, setResultado] = useState(null)
-
-  useEffect(() => {
+  const [historico, setHistorico] = useState(() => {
     const salvo = localStorage.getItem('moodshot_capturas')
-    if (salvo) {
-      setHistorico(JSON.parse(salvo))
-    }
-  }, [])
+    return salvo ? JSON.parse(salvo) : []
+  })
+  const [resultado, setResultado] = useState(null)
+  const [flash, setFlash] = useState(false)
 
   function capturarFoto() {
     if (!modoSelecionado) {
@@ -24,6 +21,7 @@ function Captura({ modoSelecionado }) {
       modo: modoSelecionado.nome,
       legenda: modoSelecionado.legenda,
       filtro: modoSelecionado.filtro,
+      cor: modoSelecionado.cor,
       intensidade,
       data: new Date().toLocaleString('pt-BR'),
     }
@@ -31,38 +29,45 @@ function Captura({ modoSelecionado }) {
     const novoHistorico = [novaCaptura, ...historico]
     setHistorico(novoHistorico)
     setResultado(novaCaptura)
-
     localStorage.setItem('moodshot_capturas', JSON.stringify(novoHistorico))
+
+    setFlash(true)
+    setTimeout(() => setFlash(false), 200)
   }
 
   return (
-    <section className="secao">
-      <h2>Simular captura</h2>
-      <p>Selecione um modo acima e clique em capturar:</p>
-      <button onClick={capturarFoto}>📷 Capturar foto</button>
+    <>
+      {flash && <div className="camera-flash"></div>}
 
-      {resultado && (
-        <div id="resultado">
-          <p><strong>Modo:</strong> {resultado.modo}</p>
-          <p><strong>Legenda gerada:</strong> {resultado.legenda}</p>
-          <p><strong>Filtros aplicados:</strong> {resultado.filtro}</p>
-          <p><strong>Intensidade aplicada:</strong> {resultado.intensidade}%</p>
-        </div>
-      )}
+      <section className="secao">
+        <h2>Simular captura</h2>
+        <p>Selecione um modo acima e clique em capturar:</p>
+        <button onClick={capturarFoto}>Capturar foto</button>
 
-      {historico.length > 0 && (
-        <div className="historico">
-          <h3>Histórico de capturas ({historico.length})</h3>
-          <ul>
-            {historico.map((item) => (
-              <li key={item.id}>
-                {item.modo} — {item.intensidade}% — {item.data}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </section>
+        {resultado && (
+          <div id="resultado" style={{ borderLeftColor: resultado.cor }}>
+            <p><strong>Modo:</strong> {resultado.modo}</p>
+            <p><strong>Legenda gerada:</strong> {resultado.legenda}</p>
+            <p><strong>Filtros aplicados:</strong> {resultado.filtro}</p>
+            <p><strong>Intensidade aplicada:</strong> {resultado.intensidade}%</p>
+          </div>
+        )}
+
+        {historico.length > 0 && (
+          <div className="historico">
+            <h3>Histórico de capturas ({historico.length})</h3>
+            <ul>
+              {historico.map((item) => (
+                <li key={item.id}>
+                  <span className="dot" style={{ background: item.cor }}></span>
+                  {item.modo} — {item.intensidade}% — {item.data}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
+    </>
   )
 }
 
