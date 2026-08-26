@@ -1,55 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Moodshoot - Login</title>
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-
+  <body>
     <div class="login-container">
+      <h1>Moodshoot</h1>
+      <p>A câmera que sente o momento.</p>
 
-        <h1>Moodshoot</h1>
-        <p>A câmera que sente o momento.</p>
+      <div class="form-group">
+        <label>E-mail:</label>
 
-        <div class="form-group">
-            <label>E-mail:</label>
+        <input type="text" id="email" placeholder="seu@email.com" />
 
-            <input
-                type="text"
-                id="email"
-                placeholder="seu@email.com"
-            />
+        <span class="erro" id="erroEmail"></span>
+      </div>
 
-            <span class="erro" id="erroEmail"></span>
-        </div>
+      <div class="form-group">
+        <label>Senha:</label>
 
-        <div class="form-group">
-            <label>Senha:</label>
+        <input type="password" id="senha" placeholder="Sua senha" />
 
-            <input
-                type="password"
-                id="senha"
-                placeholder="Sua senha"
-            />
+        <span class="erro" id="erroSenha"></span>
+      </div>
 
-            <span class="erro" id="erroSenha"></span>
-        </div>
+      <button onclick="fazerLogin()">Entrar</button>
 
-        <button onclick="fazerLogin()">Entrar</button>
-
-        <p class="dica">
-            Acesso demo:
-            <strong>demo@moodshot.com</strong> /
-            <strong>123456</strong>
-        </p>
-
+      <p class="dica">
+        Acesso demo:
+        <strong>demo@moodshot.com</strong> /
+        <strong>123456</strong>
+      </p>
     </div>
 
     <script src="js/login.js"></script>
-
-</body>
+  </body>
 </html>

@@ -1,7 +1,10 @@
 function Header({ userName, onLogout }) {
   return (
     <header className="app-header">
-      <h2>Moodshot</h2>
+      <div className="brand">
+        <img src="/apexxon-logo.png" alt="Logo do grupo" className="brand-logo" />
+        <h2>Moodshot</h2>
+      </div>
       <div>
         <span>Olá, {userName}</span>
         <button onClick={onLogout}>Sair</button>

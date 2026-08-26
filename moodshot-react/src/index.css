@@ -440,3 +440,14 @@ header span {
     margin: 40px 20px;
   }
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  height: 28px;
+  width: auto;
+}
