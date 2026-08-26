@@ -1,19 +1,18 @@
 import { useState } from "react"
 
-function Login ({onLoginSucess}){
-    const[email,setEmail] = useState('') // cria variavel especial email e setEmail para mudar valor do email 
+function Login ({onLoginSuccess}){
+    const[email,setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [erro,setErro] = useState('')
     function handleSubmit(e){
         e.preventDefault()
         if(!email ||!senha){
             setErro('Preencha e-mail e senha.')
-            onLoginSucess
+            return
         }
         if(email === 'demo@moodshot.com' && senha === '123456'){
             setErro('')
-            onLoginSucess()
-
+            onLoginSuccess(email)
         }else{
             setErro('E-mail ou senha incorretos.')
         }
@@ -27,8 +26,8 @@ function Login ({onLoginSucess}){
                     <label>E-mail:</label>
                     <input
                     type="text"
-                    value={email} //mostra o que esta guardado no email 
-                    onChange={(e)=> setEmail(e.target.value)} //atualiza o estado com novo valor
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
                     placeholder="seu@email.com"
                     />
                 </div>

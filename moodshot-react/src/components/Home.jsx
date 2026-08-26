@@ -1,8 +1,9 @@
-function Home() {
+import Header from './Header'
+
+function Home({ userEmail, onLogout }) {
   return (
     <div className="home-container">
-      <h1>Bem-vindo ao Moodshot!</h1>
-      <p>Aqui vai o conteúdo da home (Header, Slideshow, etc.)</p>
+      <Header userEmail={userEmail} onLogout={onLogout} />
     </div>
   )
 }
