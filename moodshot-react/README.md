@@ -1,16 +1,50 @@
-# React + Vite
+# Moodshot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Moodshot é uma aplicação de câmera fictícia que sugere modos de captura de acordo com o "mood" do momento (Alegria, Calma, Intensidade, Natureza, Nostalgia). O projeto foi originalmente prototipado em HTML/CSS/JS puro e migrado para React nesta sprint, utilizando componentes funcionais, estrutura de pai para filho, localStorage e operações com Math.
 
-Currently, two official plugins are available:
+## Estrutura do projeto
+```
+App (raiz)
+-Login          - tela de autenticação
+-Home
+     -Header      -nome do usuário + botão sair
+     -Slideshow   - modos em destaque (autoplay a cada 3s)
+    -ModosGrid
+        -ModoCard  - cada card recebe os dados do modo via props
+    -Captura     - simula captura de foto e salva histórico
+```
+## Tecnologias utilizadas
+- React
+- Vite
+- JavaScript (ES6+)
+- CSS3
+- LocalStorage (persistência de dados no navegador)
+- Git / GitHub
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Como instalar as dependências
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Como executar o projeto
 
-## Expanding the ESLint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+O projeto abrirá em `http://localhost:5173` (ou outra porta indicada no terminal).
+
+## Usuários e senha para teste
+
+- **Email:** demo@moodshot.com
+- **Senha:** 123456
+
+## Uso de localStorage
+
+O histórico de fotos capturadas é salvo em `localStorage` (componente `Captura.jsx`), sob a chave `moodshot_capturas`. Cada captura é convertida para texto com `JSON.stringify()` antes de salvar, e recuperada com `JSON.parse()` quando o app carrega novamente — permitindo que o usuário veja capturas anteriores mesmo após recarregar a página ou fechar o navegador.
+
+## Uso de Math
+
+- `Math.random()` é usado no componente `Captura.jsx` para gerar uma "intensidade de filtro" aleatória a cada captura.
+- `Math.round()` arredonda esse valor para um número inteiro percentual (ex: 87%), evitando casas decimais na exibição.

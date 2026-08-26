@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './Header'
 import Slideshow from './Slideshow'
 import ModosGrid from './ModosGrid'
+import Captura from './Captura'
 
 function Home({ userEmail, onLogout }) {
   const [modoSelecionado, setModoSelecionado] = useState(null)
@@ -11,6 +12,7 @@ function Home({ userEmail, onLogout }) {
       <Header userEmail={userEmail} onLogout={onLogout} />
       <Slideshow />
       <ModosGrid onModoSelecionado={setModoSelecionado} />
+      <Captura modoSelecionado={modoSelecionado} />
     </div>
   )
 }
