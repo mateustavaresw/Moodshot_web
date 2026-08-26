@@ -2,6 +2,7 @@ import { useState } from "react"
 
 function Login (){
     const[email,setEmail] = useState('') // cria variavel especial email e setEmail para mudar valor do email 
+    const [senha, setSenha] = useState('')
     return(
         <div className="login-container">
             <h1>Moodshot</h1>
@@ -16,7 +17,17 @@ function Login (){
                 />
                 
             </div>
-            <p>Você digitou: {email}</p>
+            <div className="form-group">
+                <label>Senha:</label>
+                <input
+                type="password"
+                value={senha}
+                onChange={(e)=>setSenha(e.target.value)}
+                placeholder="Sua senha"
+                />
+
+            </div>
+            
         </div>
     )
 }
