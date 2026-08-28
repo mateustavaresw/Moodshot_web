@@ -17,7 +17,7 @@ Moodshot é uma aplicação de câmera fictícia que sugere modos de captura de 
 
 | | |
 |---|---|
-|  Deploy | |
+|  Deploy | https://moodshot-react.vercel.app/ |
 | Instruções completas | [`moodshot-react/README.md`](./moodshot-react/README.md) |
 
 ##  Como rodar o projeto 
